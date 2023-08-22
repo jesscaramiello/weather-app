@@ -1,6 +1,7 @@
 'use client'
-import { SetStateAction, useState } from "react";
+import {  useState } from "react";
 
+import { Container, TextField, Button, Grid } from "@material-ui/core";
 export default function Home() {
   const apiKey ="23d1b161c263b4c89469372c6eedb5b0"
   const [city,setCity] = useState("");
@@ -50,32 +51,51 @@ export default function Home() {
   //checkWeather("new york");
   return (
     <>
-    
-    <div>
-     <label htmlFor="CityName">City:  </label>
-      <input type="text" placeholder="City Name..." id="CityName" name="CityName" 
-        value={city}
-        onChange={e => setCity(e.target.value)}></input>
-
-      <button onClick={handleSearch}>Search</button>
-
-      <h1 className="temp">°c</h1>
-      <h2 className="city">City</h2>
-      <div className="details">
-        <div className="col">
-          <div>
-            <p className="humidity">%</p>
-            <p>Humidity</p>
-          </div>
-          <div>
-            <p className="wind">kph</p>
-            <p>Wind Speed</p>
-          </div>
-        </div>
-
-      </div>
-
+    <Container maxWidth="md">
+    <div style={{ textAlign: "center", marginTop: "2rem" }}>
+        <Grid container spacing={3} alignItems="center" justify="center">
+          <Grid item xs={12} md={6}>
+            <TextField
+              fullWidth
+              placeholder="City Name..."
+              id="CityName"
+              name="CityName"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleSearch}
+            >
+              Search
+            </Button>
+          </Grid>
+        </Grid>
+      <Grid container spacing={3}>
+          <Grid item xs={12} md={6}>
+            <h1 className="temp">°c</h1>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <h2 className="city">City</h2>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <div>
+              <p className="humidity">%</p>
+              <p>Humidity</p>
+            </div>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <div>
+              <p className="wind">kph</p>
+              <p>Wind Speed</p>
+            </div>
+          </Grid>
+        </Grid>
     </div>
+    </Container>
     </>
   );
 }
